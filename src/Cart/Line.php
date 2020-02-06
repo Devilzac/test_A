@@ -9,4 +9,6 @@ class Line
     /** @var  \int */
     public $quantity;
 
-    
+    /** @var Item **/
+    public $item;
+}

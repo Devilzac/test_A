@@ -5,6 +5,8 @@ namespace Checkout\Cart;
 use Checkout\Cart;
 use Checkout\Item;
 
+use Checkout\Cart\Line;
+
 class BasicCart implements Cart
 {
     public $cartItems = [];
@@ -22,7 +24,10 @@ class BasicCart implements Cart
      */
     public function addItem(Item $item, $qty)
     {
-        array_push($this->cartItems,["item"=>$item, "quantity"=>$qty]);
+        $newLine = new Line();
+        $newLine->quantity = $qty;
+        $newLine->item = $item;
+        array_push($this->cartItems, $newLine);
         // TODO: Implement addItem() method.        
     }
 }

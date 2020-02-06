@@ -37,21 +37,21 @@ class BasicCartTest extends \PHPUnit_Framework_TestCase
         $cart->addItem($item, $quantity);
     
         $itemsInCart=reset($cart->cartItems);
-       
-        $this->assertContains($item,$itemsInCart);
+     
+        $this->assertSame($item,$itemsInCart->item);
     }
 
     public function test_If_Added_Item_Contains_Quantity(){
 
         $cart = BasicCart::create();
         $item = new BasicItem("AAA");
-        $quantity = "quantity";
+        $quantity = 4;
 
         $cart->addItem($item, $quantity);
     
         $itemsInCart=reset($cart->cartItems);
        
-        $this->assertContains($quantity,$itemsInCart);
+        $this->assertSame($quantity,$itemsInCart->quantity);
     }
     
 }
