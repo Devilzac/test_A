@@ -2,9 +2,11 @@
 
 use Checkout\Cart\BasicCart;
 use Checkout\Item\BasicItem;
+use Checkout\Cart\Line;
 
 class BasicCartTest extends \PHPUnit_Framework_TestCase
 {
+    /*
     public function test_If_Cart_Is_Empty(){
 
         $cart = BasicCart::create();
@@ -53,5 +55,43 @@ class BasicCartTest extends \PHPUnit_Framework_TestCase
        
         $this->assertSame($quantity,$itemsInCart->quantity);
     }
+*/
+    public function test_If_Items_Are_the_Same(){
+
+        $item = new BasicItem("AAA");
+        $item2 = new BasicItem("AAA");
+        $result=$item->equals($item2);
+       
+        $this->assertTrue($result);
+    }
     
+    public function test_if_Same_Items_Add_Up(){
+
+        $cart = BasicCart::create();
+        $item = new BasicItem("AAA");
+        $item2 = new BasicItem("BBB");
+        $quantity = 4;
+
+        $result=$cart->addItem($item, $quantity);
+        $result=$cart->addItem($item, $quantity);
+        $result=$cart->addItem($item, $quantity);
+        $result=$cart->addItem($item2, $quantity);
+
+      /*  $line = new Line();
+        $line->$item = $item;        
+        $line->$quantity = $quantity;
+        */
+  
+        $AddedItems = $cart->cartItems;
+        
+       // $result=$cart->addUpSameItems($line);
+        var_dump($AddedItems);
+        die;
+/*
+        $result = reset($cart->cartItems);
+        var_dump($result->quantity);
+        $this->assertEquals($expected,$result->quantity);*/
+    }
+
+
 }

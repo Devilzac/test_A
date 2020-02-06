@@ -30,6 +30,10 @@ class BasicItem implements Item
 
     {
         // TODO: Implement equals() method.
+        if($item->sku == $this->sku){
+            return true;
+        }
+        return false;
     }
 
     /**

@@ -27,7 +27,28 @@ class BasicCart implements Cart
         $newLine = new Line();
         $newLine->quantity = $qty;
         $newLine->item = $item;
-        array_push($this->cartItems, $newLine);
+        $result = $this->addUpSameItems($newLine);
+        if(!$result){
+            array_push($this->cartItems, $newLine);
+
+        }
         // TODO: Implement addItem() method.        
     }
+    /**
+     * @param Line $line
+     */
+    public function addUpSameItems(Line $line)
+    {
+        if(!empty($this->cartItems)){
+             foreach($this->cartItems as $item){
+                if($line->item->equals($item->item)){
+                    $item->quantity += $line->quantity;
+                    return true;
+                }
+            }
+            return false;
+        }
+        return false;    
+    }
+    
 }
