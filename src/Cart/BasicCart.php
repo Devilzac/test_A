@@ -6,6 +6,7 @@ use Checkout\Cart;
 use Checkout\Item;
 
 use Checkout\Cart\Line;
+use Checkout\Promotion\BasicPromotion;
 
 class BasicCart implements Cart
 {
@@ -40,7 +41,7 @@ class BasicCart implements Cart
     public function addUpSameItems(Line $line)
     {
         if(!empty($this->cartItems)){
-             foreach($this->cartItems as $item){
+            foreach($this->cartItems as $item){
                 if($line->item->equals($item->item)){
                     $item->quantity += $line->quantity;
                     return true;
@@ -50,5 +51,6 @@ class BasicCart implements Cart
         }
         return false;    
     }
+
     
 }

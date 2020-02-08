@@ -4,5 +4,13 @@ namespace Checkout;
 
 interface Promotion
 {
-    public function checkForPromotions();
+      /**
+     * @return array
+     */
+    public function getAvailablePromotions(): array;
+
+      /**
+     * @param array $promotion
+     */
+    public function setPromotion($promotion);
 }

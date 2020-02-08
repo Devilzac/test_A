@@ -7,6 +7,12 @@ use Checkout\Cart\Line;
 class BasicCartTest extends \PHPUnit_Framework_TestCase
 {
     
+    public function test_If_cartItems_attribute_exists()
+    {
+        $basicCart = BasicCart::create();   
+        $this->assertObjectHasAttribute('cartItems', $basicCart); 
+    }
+
     public function test_If_Cart_Is_Empty(){
 
         $cart = BasicCart::create();
