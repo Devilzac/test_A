@@ -32,7 +32,7 @@ class BasicCart implements Cart
             array_push($this->cartItems, $newLine);
 
         }
-        // TODO: Implement addItem() method.        
+        // TODO: Implement addItem() method.
     }
     /**
      * @param Line $line
