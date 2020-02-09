@@ -11,4 +11,8 @@ class Line
 
     /** @var Item **/
     public $item;
+
+    /** @var int **/
+    public $linePrice;
+    
 }
