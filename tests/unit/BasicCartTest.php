@@ -83,7 +83,8 @@ class BasicCartTest extends \PHPUnit_Framework_TestCase
         $cart->addItem($item2, $quantity);
 
         $AddedItems = $cart->cartItems[0];
-
+var_dump($AddedItems);
+die;
         $this->assertEquals($expected,$AddedItems->quantity);
     }
 
