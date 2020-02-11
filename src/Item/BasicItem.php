@@ -81,16 +81,16 @@ class BasicItem implements Item
 
         switch ($LowerCaseSkuName) {
             case "aaa":
-                $basicPromotion->setPromotion(["Unit", "percentage"=>10, "promotion3x2"]);
+                $basicPromotion->setPromotion(["percentage"=>10, "promotion3x2"=>"3x2"]);
                 break;
             case "bbb":
-                $basicPromotion->setPromotion(["Unit","percentage"=>5]);
+                $basicPromotion->setPromotion(["percentage"=>5]);
                 break;
             case "ccc":
-                $basicPromotion->setPromotion(["Unit"]);
+                $basicPromotion->setPromotion([]);
             break;
             case "ddd":
-                $basicPromotion->setPromotion(["Unit", "percentage"=>10, "promotion3x2"]);
+                $basicPromotion->setPromotion(["percentage"=>10, "promotion3x2"=>"3x2"]);
             break;
         }
         

@@ -40,7 +40,7 @@ class BasicItemTest extends \PHPUnit_Framework_TestCase
     public function test_Set_Promotions_Depending_On_SKU_Name()
     {
         $skuName = "AAA";
-        $expected_Promotion=["Unit", "percentage"=>10, "promotion3x2"];
+        $expected_Promotion=["percentage"=>10, "promotion3x2"=>"3x2"];
 
         $BasicItem=new BasicItem($skuName); 
 

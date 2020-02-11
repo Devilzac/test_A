@@ -52,5 +52,45 @@ class BasicCart implements Cart
         return false;    
     }
 
+        /**
+     * @param Line $line
+     */
+    public function checkPromotion(Line $line){
+        
+        $actualPromo= $line->item->getPromotion();
+
+        if($line->quantity >= 3 and array_key_exists("promotion3x2", $actualPromo)){            
+            $line->primaryPromotionApplied=true;
+            return $actualPromo["promotion3x2"];   
+           }
+
+        if($line->quantity == 2 and array_key_exists("percentage", $actualPromo)){
+            $line->primaryPromotionApplied=true;
+            return $actualPromo["percentage"];   
+           }
+    }
+
+    public function calculate3x2(Line $line){
+        $ammount_of_promos=0;
+        $Items_out_of_promotion=0;
+        $itemPrice = $line->item->getPrice();
+
+        if($line->quantity % 3 != 0){          
+            $Items_out_of_promotion=$line->quantity % 3;
+        }
+
+        $price_of_Items_out_of_promotion = $itemPrice * $Items_out_of_promotion;
+
+        $ammount_of_promos = ($line->quantity - $Items_out_of_promotion) / 3;
+
+        $price_of_free_items = $itemPrice * $ammount_of_promos;
+        
+        $price_of_Items_with_promotion = ($itemPrice * ($line->quantity - $Items_out_of_promotion)) - $price_of_free_items;
+
+        $total_Price = $price_of_Items_with_promotion + $price_of_Items_out_of_promotion;
+
+        return $total_Price;
+
+    }
     
 }

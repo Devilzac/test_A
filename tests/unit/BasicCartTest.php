@@ -88,5 +88,46 @@ class BasicCartTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected,$AddedItems->quantity);
     }
 
+    public function test_if_returns_3x2_Promotion_When_items_Quantity_minimum_3(){
+
+        $cart = BasicCart::create();
+        $item = new BasicItem("AAA");
+        $quantity = 3;
+        $expected = "3x2";
+
+        $cart->addItem($item, $quantity);
+        $AddedItems = $cart->cartItems[0];  
+        $return=$cart->checkPromotion($AddedItems);
+
+        $this->assertEquals($expected,$return);
+    }
+    public function test_if_returns_Percentage_Promotion_When_Items_Quantity_Equals_2(){
+
+        $cart = BasicCart::create();
+        $item = new BasicItem("AAA");
+        $quantity = 2;
+        $expectedPercentage = 10;
+
+        $cart->addItem($item, $quantity);
+        $AddedItems = $cart->cartItems[0];  
+        $return=$cart->checkPromotion($AddedItems);
+
+        $this->assertEquals($expectedPercentage,$return);
+    }
+
+    public function test_if_calculates_3x2(){
+
+        $cart = BasicCart::create();
+        $item = new BasicItem("AAA");
+        $quantity = 6;
+        $expectedPrice = 400;
+
+        $cart->addItem($item, $quantity);
+        $AddedItems = $cart->cartItems[0];  
+        $return=$cart->calculate3x2($AddedItems);
+
+        $this->assertEquals($expectedPrice,$return);
+    }
+
 
 }

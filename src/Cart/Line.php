@@ -14,5 +14,8 @@ class Line
 
     /** @var int **/
     public $linePrice;
+
+    /** @var boolean **/
+    public $primaryPromotionApplied=false;
     
 }
