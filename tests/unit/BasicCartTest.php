@@ -129,5 +129,18 @@ class BasicCartTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedPrice,$return);
     }
 
+    public function test_if_calculates_Percentage(){
+
+        $cart = BasicCart::create();
+        $item = new BasicItem("AAA");
+        $quantity = 2;
+        $expectedPrice = 180;
+
+        $cart->addItem($item, $quantity);
+        $AddedItems = $cart->cartItems[0];  
+        $return=$cart->percentageDiscount($AddedItems);
+
+        $this->assertEquals($expectedPrice,$return);
+    }
 
 }

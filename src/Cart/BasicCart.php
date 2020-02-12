@@ -89,7 +89,22 @@ class BasicCart implements Cart
 
         $total_Price = $price_of_Items_with_promotion + $price_of_Items_out_of_promotion;
 
-        return $total_Price;
+        $line->linePrice = $total_Price;
+
+        return $line->linePrice;
+
+    }
+    public function percentageDiscount(Line $line){
+    
+        
+        $itemPrice = $line->item->getPrice();
+        $quantity = $line->quantity;
+
+        $promotion = $line->item->getPromotion();
+        $discount = ($itemPrice * $quantity) * $promotion["percentage"] / 100;
+        $line->linePrice = ($itemPrice * $quantity) - $discount;
+        
+        return $line->linePrice;
 
     }
     
