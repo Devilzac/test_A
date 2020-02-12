@@ -33,6 +33,8 @@ class BasicCart implements Cart
             array_push($this->cartItems, $newLine);
 
         }
+
+        $this->checkPromotion($newLine);
         // TODO: Implement addItem() method.
     }
     /**
@@ -56,17 +58,23 @@ class BasicCart implements Cart
      * @param Line $line
      */
     public function checkPromotion(Line $line){
-        
         $actualPromo= $line->item->getPromotion();
 
-        if($line->quantity >= 3 and array_key_exists("promotion3x2", $actualPromo)){            
+        if($line->quantity >= 3 and array_key_exists("promotion3x2", $actualPromo)){ 
+            $this->calculate3x2($line);           
             $line->primaryPromotionApplied=true;
             return $actualPromo["promotion3x2"];   
            }
 
         if($line->quantity == 2 and array_key_exists("percentage", $actualPromo)){
+            $this->percentageDiscount($line);
             $line->primaryPromotionApplied=true;
             return $actualPromo["percentage"];   
+           }
+        
+
+        if(!$line->primaryPromotionApplied){ 
+            $this->calculateUnitPrice($line);
            }
     }
 
@@ -96,16 +104,20 @@ class BasicCart implements Cart
     }
     public function percentageDiscount(Line $line){
     
-        
         $itemPrice = $line->item->getPrice();
         $quantity = $line->quantity;
 
         $promotion = $line->item->getPromotion();
         $discount = ($itemPrice * $quantity) * $promotion["percentage"] / 100;
         $line->linePrice = ($itemPrice * $quantity) - $discount;
-        
+      
         return $line->linePrice;
 
+    }
+
+    public function calculateUnitPrice($line){
+        $line->linePrice = $line->quantity * $line->item->getPrice();
+        return $line->linePrice;
     }
     
 }

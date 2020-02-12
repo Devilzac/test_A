@@ -143,4 +143,18 @@ class BasicCartTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedPrice,$return);
     }
 
+    public function test_if_No_Promotion_Applied_Then_Calculates_Unit_Price_Item(){
+
+        $cart = BasicCart::create();
+        $item = new BasicItem("CCC");
+        $quantity = 10;
+        $expectedPrice = 250;
+
+        $cart->addItem($item, $quantity);
+        $AddedItems = $cart->cartItems[0];  
+        $return=$cart->calculateUnitPrice($AddedItems);
+
+        $this->assertEquals($expectedPrice,$return);
+    }
+
 }
