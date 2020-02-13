@@ -1,8 +1,5 @@
 <?php
 
-use Checkout\Cart\BasicCart;
-use Checkout\Item\BasicItem;
-use Checkout\Cart\Line;
 use Checkout\Promotion\BasicPromotion;
 
 class BasicPromotionTest extends \PHPUnit_Framework_TestCase
@@ -10,7 +7,7 @@ class BasicPromotionTest extends \PHPUnit_Framework_TestCase
     public function test_If_Promotions_attribute_exists()
     {
         $basicPromotion = BasicPromotion::create();   
-        $this->assertObjectHasAttribute('promotions', $basicPromotion); 
+        $this->assertObjectHasAttribute('promotions', $basicPromotion, "Expected object to contain attribute 'promotions'"); 
     }
     
     public function test_Set_Promotions()
@@ -35,7 +32,7 @@ class BasicPromotionTest extends \PHPUnit_Framework_TestCase
         $basicPromotion->setPromotion($promotion);
 
         $result=count($basicPromotion->getAvailablePromotions());
-        $this->assertEquals($expectedPromotionAmount,$result);
+        $this->assertEquals($expectedPromotionAmount,$result, "Expected to receive same amount of added promotion");
     }
 
     

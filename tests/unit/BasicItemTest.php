@@ -8,7 +8,7 @@ class BasicItemTest extends \PHPUnit_Framework_TestCase
     {
         $skuName = "AAA";
         $BasicItem=new BasicItem($skuName); 
-        $this->assertObjectHasAttribute('price', $BasicItem); 
+        $this->assertObjectHasAttribute('price', $BasicItem, "Expected object to contain attribute 'price'");
     }
 
     public function testGetName()
@@ -16,24 +16,24 @@ class BasicItemTest extends \PHPUnit_Framework_TestCase
         $skuName = "AAA";
         $BasicItem=new BasicItem($skuName);
         $result=$BasicItem->getName();
-        $this->assertEquals($skuName,$result);
+        $this->assertEquals($skuName,$result, "Expected to receive item name");
     }
     
-    public function test_If_Set_expected_Price_To_Sku()
+    public function test_If_Set_Expected_Price_To_Sku()
     {
         $skuName = "AAA";
         $expectedPrice=100;
         $BasicItem=new BasicItem($skuName); 
         $BasicItem->setPrice();
         $price=$BasicItem->getPrice();
-        $this->assertEquals($expectedPrice, $price); 
+        $this->assertEquals($expectedPrice, $price, "Expected to receive expected price $expectedPrice"); 
     }
     
     public function test_If_Discount_Attribute_Exists()
     {
         $skuName = "AAA";
         $BasicItem=new BasicItem($skuName); 
-        $this->assertObjectHasAttribute('discount', $BasicItem); 
+        $this->assertObjectHasAttribute('discount', $BasicItem, "Expected object to contain attribute 'discount'"); 
     }
 
 
@@ -46,6 +46,6 @@ class BasicItemTest extends \PHPUnit_Framework_TestCase
 
         $promotion=$BasicItem->getPromotion();
 
-        $this->assertEquals($expected_Promotion, $promotion); 
+        $this->assertEquals($expected_Promotion, $promotion, "Expected to receive same promotion"); 
     }
 }

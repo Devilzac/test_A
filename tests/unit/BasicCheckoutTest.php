@@ -7,7 +7,7 @@ class BasicCheckoutTest extends \PHPUnit_Framework_TestCase
     public function test_If_finalPrice_attribute_exists()
     {
         $basicPromotion = BasicCheckout::createBasicCheckout();   
-        $this->assertObjectHasAttribute('finalPrice', $basicPromotion); 
+        $this->assertObjectHasAttribute('finalPrice', $basicPromotion, "Expected object to contain attribute 'finalPrice'");
     }
 
     public function test_Set_finalPrice()

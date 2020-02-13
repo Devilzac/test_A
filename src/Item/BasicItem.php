@@ -32,9 +32,7 @@ class BasicItem implements Item
      * @return boolean
      */
     public function equals(Item $item)
-
     {
-        // TODO: Implement equals() method.
         if($item->sku == $this->sku){
             return true;
         }
@@ -46,9 +44,9 @@ class BasicItem implements Item
      */
     public function getName()
     {
-        // TODO: Implement getName() method.
         return $this->sku;
     }
+
     public function setPrice(){    
 
         $LowerCaseSkuName = strtolower($this->getName());   

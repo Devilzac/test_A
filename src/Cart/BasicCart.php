@@ -57,7 +57,9 @@ class BasicCart implements Cart
      * @param Line $line
      */
     public function checkPromotion(Line $line){
+
         $actualPromo= $line->item->getPromotion();
+
         if($line->quantity >= 3 and array_key_exists("promotion3x2", $actualPromo)){ 
             $this->calculate3x2($line);           
             $line->primaryPromotionApplied=true;
@@ -66,7 +68,6 @@ class BasicCart implements Cart
 
         if($line->quantity >= 2 and array_key_exists("percentage", $actualPromo) and $line->primaryPromotionApplied == false){
             $this->percentageDiscount($line);
-            //var_dump($actualPromo["percentage"]);die;
             $line->primaryPromotionApplied=true;
             return $actualPromo["percentage"];   
            }
@@ -101,6 +102,7 @@ class BasicCart implements Cart
         return $line->linePrice;
 
     }
+    
     public function percentageDiscount(Line $line){
     
         $itemPrice = $line->item->getPrice();
@@ -111,7 +113,6 @@ class BasicCart implements Cart
         $line->linePrice = ($itemPrice * $quantity) - $discount;
       
         return $line->linePrice;
-
     }
 
     public function calculateUnitPrice($line){
