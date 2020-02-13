@@ -92,25 +92,26 @@ class BasicCartTest extends \PHPUnit_Framework_TestCase
 
         $cart = BasicCart::create();
         $item = new BasicItem("AAA");
-        $quantity = 3;
+        $quantity = 6;
         $expected = "3x2";
 
         $cart->addItem($item, $quantity);
         $AddedItems = $cart->cartItems[0];  
         $return=$cart->checkPromotion($AddedItems);
-
+      
         $this->assertEquals($expected,$return);
     }
-    public function test_if_returns_Percentage_Promotion_When_Items_Quantity_Equals_2(){
+    public function test_if_returns_Percentage_When_Items_have_Percentage_Promotion_Added(){
 
         $cart = BasicCart::create();
         $item = new BasicItem("AAA");
-        $quantity = 2;
         $expectedPercentage = 10;
 
-        $cart->addItem($item, $quantity);
-        $AddedItems = $cart->cartItems[0];  
-        $return=$cart->checkPromotion($AddedItems);
+        $newLine = new Line();
+        $newLine->quantity = 2;
+        $newLine->item = $item;
+        
+        $return=$cart->checkPromotion($newLine);
 
         $this->assertEquals($expectedPercentage,$return);
     }

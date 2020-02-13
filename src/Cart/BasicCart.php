@@ -34,7 +34,6 @@ class BasicCart implements Cart
 
         }
 
-        $this->checkPromotion($newLine);
         // TODO: Implement addItem() method.
     }
     /**
@@ -59,15 +58,15 @@ class BasicCart implements Cart
      */
     public function checkPromotion(Line $line){
         $actualPromo= $line->item->getPromotion();
-
         if($line->quantity >= 3 and array_key_exists("promotion3x2", $actualPromo)){ 
             $this->calculate3x2($line);           
             $line->primaryPromotionApplied=true;
             return $actualPromo["promotion3x2"];   
            }
 
-        if($line->quantity == 2 and array_key_exists("percentage", $actualPromo)){
+        if($line->quantity >= 2 and array_key_exists("percentage", $actualPromo) and $line->primaryPromotionApplied == false){
             $this->percentageDiscount($line);
+            //var_dump($actualPromo["percentage"]);die;
             $line->primaryPromotionApplied=true;
             return $actualPromo["percentage"];   
            }

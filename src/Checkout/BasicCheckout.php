@@ -22,7 +22,13 @@ class BasicCheckout implements Checkout
      */
     public function calculate(Cart $cart)
     {
-        // TODO: Implement calculate() method.
+        $price = 0;
+        foreach ($cart->cartItems as $line) {
+            $cart->checkPromotion($line);
+            $price += $line->linePrice;
+        }
+        $this->setFinalPrice($price);
+        return $this->getFinalPrice();
     }
 
    /**
