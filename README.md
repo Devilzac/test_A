@@ -1,5 +1,9 @@
 # Prueba ténica
 
+## Clone Repo
+```
+git clone https://github.com/Devilzac/test_A.git
+```
 ## Instalar Dependencias
 
 ```
